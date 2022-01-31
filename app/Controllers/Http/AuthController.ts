@@ -8,20 +8,20 @@ export default class AuthController {
 
 
   public async login({ request, response, auth, session }: HttpContextContract) {
-    // grab uid and password values off request body
     const { uid, password } = request.only(['uid', 'password'])
-
     try {
-      // attempt to login
-      await auth.attempt(uid, password)
+      await auth.use('web').attempt(uid, password)
     } catch (error) {
-      // if login fails, return vague form message and redirect back
       session.flash('form', 'Your username, email, or password is incorrect')
       return response.redirect().back()
     }
+    return response.status(200).json({status:1, auth: true});
+  }
 
-    // otherwise, redirect to home page
-    return response.redirect('/')
+  public async session({ auth }: HttpContextContract) {
+    // logout the user
+    await auth.use('web').authenticate()
+    console.log(auth.use('web').user!)
   }
 
   public async logout({ response, auth }: HttpContextContract) {

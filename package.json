@@ -23,6 +23,8 @@
     "@adonisjs/session": "^6.1.2",
     "@adonisjs/shield": "^7.0.0",
     "@adonisjs/view": "^6.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
     "luxon": "^2.3.0",
     "pg": "^8.7.1",
     "phc-argon2": "^1.1.2",

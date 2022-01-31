@@ -20,9 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route';
 
-Route.get('/', async ({view}) => {
-  return view.render('welcome');
-})
 //Routes Users
 Route.post("/users", "UsersController.create");
 Route.get("/users", "UsersController.index");
@@ -30,6 +27,7 @@ Route.get("/users", "UsersController.index");
 Route.get('login', 'AuthController.loginShow').as('auth.login.show')
 Route.post('login', 'AuthController.login').as('auth.login')          
 Route.get('logout', 'AuthController.logout').as('auth.logout') 
+Route.get('/', "AuthController.session");
 //Routes Ordem de Servico
-Route.post("/service_orders", "ServiceOrdersController.create");
-Route.get("/service_orders", "ServiceOrdersController.index");
+Route.get("service_orders", 'ServiceOrdersController.servicesShow')
+Route.post("service_orders", "ServiceOrdersController.create").as('register.services')

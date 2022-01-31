@@ -1,0 +1,35 @@
+{{-- resources/views/auth/register.edge --}}
+
+<form action="{{ route('register.services') }}" method="POST">
+  <label>
+    Colaborador
+    <input type="text" name="colaborador" value="{{ flashMessages.get('colaborador') ?? '' }}" />
+    @if (flashMessages.has('errors.colaborador'))
+      <small style="color: red;">
+        {{ flashMessages.get('errors.colaborador') }}
+      </small>
+    @endif
+  </label>
+
+  <label>
+    Cliente
+    <input type="text" name="cliente" value="{{ flashMessages.get('cliente') ?? '' }}" />
+    @if (flashMessages.has('errors.cliente'))
+      <small style="color: red;">
+        {{ flashMessages.get('errors.cliente') }}
+      </small>
+    @endif
+  </label>
+
+  <label>
+    Problema
+    <input type="text" name="text" />
+    @if (flashMessages.has('errors.text'))
+      <small style="color: red;">
+        {{ flashMessages.get('errors.text') }}
+      </small>
+    @endif
+  </label>
+
+  <button type="submit">Salvar</button>
+</form>
